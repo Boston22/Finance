@@ -21,95 +21,70 @@
 window.onload = function () {
 
 var chart = new CanvasJS.Chart("chartContainer", {
-	exportEnabled: true,
 	animationEnabled: true,
+	exportEnabled: true,
+	theme: "light1", // "light1", "light2", "dark1", "dark2"
 	title:{
-		text: "Car Parts Sold in Different States"
+		text: "Simple Column Chart with Index Labels"
 	},
-	subtitles: [{
-		text: "Click Legend to Hide or Unhide Data Series"
-	}],
-	axisX: {
-		title: "States"
-	},
-	axisY: {
-		title: "Oil Filter - Units",
-		titleFontColor: "#4F81BC",
-		lineColor: "#4F81BC",
-		labelFontColor: "#4F81BC",
-		tickColor: "#4F81BC",
-		includeZero: true
-	},
-	axisY2: {
-		title: "Clutch - Units",
-		titleFontColor: "#C0504E",
-		lineColor: "#C0504E",
-		labelFontColor: "#C0504E",
-		tickColor: "#C0504E",
-		includeZero: true
-	},
-	toolTip: {
-		shared: true
-	},
-	legend: {
-		cursor: "pointer",
-		itemclick: toggleDataSeries
-	},
+  	axisY: {
+      includeZero: true
+    },
 	data: [{
-		type: "column",
-		name: "Oil Filter",
-		showInLegend: true,
-		yValueFormatString: "#,##0.# Units",
+		type: "row", //change type to bar, line, area, pie, etc
+		//indexLabel: "{y}", //Shows y value on all Data Points
+		dataNumFontColor: "#5A5757",
+      	dataNumFontSize: 16,
+		dataNumPlacement: "outside",
+        dataNameFontColor: "#5A5757",
+        dataNameFontSize: 16,
+        dataNamePlacement: "before",
 		dataPoints: [
-			{ label: "1992",  y: 19034.5 },
-			{ label: "1993", y: 20015 },
-			{ label: "1994", y: 25342 },
-			{ label: "1995",  y: 20088 },
-			{ label: "1996",  y: 28234 }
-            { label: "1997", y:  },
-            { label: "1998", y:  },
-            { label: "1999", y:  },
-            { label: "2000", y:  },
-            { label: "2001", y:  },
-            { label: "2002", y:  },
-            { label: "2003", y:  },
-            { label: "2004", y:  },
-            { label: "2012", y:  },
-            { label: "2013", y:  },
-            { label: "2014", y:  },
-            { label: "2015", y:  },
-            { label: "2016", y:  },
-            { label: "2017", y:  },
-            { label: "2018", y:  },
-            { label: "2019", y:  },
-
-		]
-	},
-	{
-		type: "column",
-		name: "Clutch",
-		axisYType: "secondary",
-		showInLegend: true,
-		yValueFormatString: "#,##0.# Units",
-		dataPoints: [
-			{ label: "New Jersey", y: 210.5 },
-			{ label: "Texas", y: 135 },
-			{ label: "Oregon", y: 425 },
-			{ label: "Montana", y: 130 },
-			{ label: "Massachusetts", y: 528 }
+			{ x: new Date(1992,0), y: 71 },
+			{ x: 1993, y: 55 },
+			{ x: 1994, y: 50 },
+			{ x: 1995, y: 65 },
+			{ x: 1996, y: 92, dataNum: "\u2605 Highest" },
+			{ x: 1997, y: 68 },
+			{ x: 1998, y: 38 },
+			{ x: 1999, y: 71 },
+			{ x: 2000, y: 54 },
+			{ x: 2001, y: 60 },
+			{ x: 2002, y: 36 },
+			{ x: 2003, y: 49 },
+			{ x: 2004, y: 21, dataNum: "\u2691 Lowest" }
+            { x: 2012, y: 22, }
+            { x: 2013, y: 23, }
+            { x: 2014, y: 24, }
+            { x: 2015, y: 25, }
+            { x: 2016, y: 26, }
+            { x: 2017, y: 27, }
+            { x: 2018, y: 28, }
+            { x: 2019, y: 29, }
+            { x: new Date(1994,0), y: 55 }
+            { x: new Date(1995,0), y: 50 }
+            { x: new Date(1996,0), y: 65 }
+            { x: new Date(1997,0), y: 92 }
+            { x: new Date(1998,0), y: 68 }
+            { x: new Date(1999,0), y: 38 }
+            { x: new Date(2000,0), y: 71 },
+            { x: new Date(2001,0), y: 54 },
+            { x: new Date(2002,0), y: 60 },
+            { x: new Date(2003,0), y: 36 },
+            { x: new Date(2004,0), y: 49 },
+            { x: new Date(2012,0), y: 21 },
+            { x: new Date(2013,0), y: 22 }
+            { x: new Date(2014,0), y: 23 },
+            { x: new Date(2015,0), y: 24 },
+            { x: new Date(2016,0), y: 25 },
+            { x: new Date(2017,0), y: 26 },
+            { x: new Date(2018,0), y: 27 },
+            { x: new Date(2019,0), y: 28 },
+            { x: new Date(1993,0), y: 71 }
 		]
 	}]
 });
 chart.render();
-
-function toggleDataSeries(e) {
-	if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-		e.dataSeries.visible = false;
-	} else {
-		e.dataSeries.visible = true;
-	}
-	e.chart.render();
-}
 
 }
 </script>
