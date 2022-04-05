@@ -18,76 +18,161 @@
 
     <!-- for financial aid -->
     <script>
-window.onload = function () {
+        window.onload = function () {
 
-var chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,
-	exportEnabled: true,
-	theme: "light1", // "light1", "light2", "dark1", "dark2"
-	title:{
-		text: "Simple Column Chart with Index Labels"
-	},
-  	axisY: {
-      includeZero: true
-    },
-	data: [{
-		type: "row", //change type to bar, line, area, pie, etc
-		//indexLabel: "{y}", //Shows y value on all Data Points
-		dataNumFontColor: "#5A5757",
-      	dataNumFontSize: 16,
-		dataNumPlacement: "outside",
-        dataNameFontColor: "#5A5757",
-        dataNameFontSize: 16,
-        dataNamePlacement: "before",
-		dataPoints: [
-			{ x: new Date(1992,0), y: 71 },
-			{ x: 1993, y: 55 },
-			{ x: 1994, y: 50 },
-			{ x: 1995, y: 65 },
-			{ x: 1996, y: 92, dataNum: "\u2605 Highest" },
-			{ x: 1997, y: 68 },
-			{ x: 1998, y: 38 },
-			{ x: 1999, y: 71 },
-			{ x: 2000, y: 54 },
-			{ x: 2001, y: 60 },
-			{ x: 2002, y: 36 },
-			{ x: 2003, y: 49 },
-			{ x: 2004, y: 21, dataNum: "\u2691 Lowest" }
-            { x: 2012, y: 22, }
-            { x: 2013, y: 23, }
-            { x: 2014, y: 24, }
-            { x: 2015, y: 25, }
-            { x: 2016, y: 26, }
-            { x: 2017, y: 27, }
-            { x: 2018, y: 28, }
-            { x: 2019, y: 29, }
-            { x: new Date(1994,0), y: 55 }
-            { x: new Date(1995,0), y: 50 }
-            { x: new Date(1996,0), y: 65 }
-            { x: new Date(1997,0), y: 92 }
-            { x: new Date(1998,0), y: 68 }
-            { x: new Date(1999,0), y: 38 }
-            { x: new Date(2000,0), y: 71 },
-            { x: new Date(2001,0), y: 54 },
-            { x: new Date(2002,0), y: 60 },
-            { x: new Date(2003,0), y: 36 },
-            { x: new Date(2004,0), y: 49 },
-            { x: new Date(2012,0), y: 21 },
-            { x: new Date(2013,0), y: 22 }
-            { x: new Date(2014,0), y: 23 },
-            { x: new Date(2015,0), y: 24 },
-            { x: new Date(2016,0), y: 25 },
-            { x: new Date(2017,0), y: 26 },
-            { x: new Date(2018,0), y: 27 },
-            { x: new Date(2019,0), y: 28 },
-            { x: new Date(1993,0), y: 71 }
-		]
-	}]
-});
-chart.render();
+        var chart = new CanvasJS.Chart("chartContainer", {
+        	animationEnabled: true,
+        	title:{
+        		text: "Google - Consolidated Quarterly Revenue",
+        		fontFamily: "arial black",
+        		fontColor: "#695A42"
+        	},
+        	axisX: {
+        		interval: 1,
+        		intervalType: "year"
+        	},
+        	axisY:{
+        		valueFormatString:"$#0bn",
+        		gridColor: "#B6B1A8",
+        		tickColor: "#B6B1A8"
+        	},
+        	toolTip: {
+        		shared: true,
+        		content: toolTipContent
+        	},
+        	data: [{
+        		type: "stackedColumn",
+        		showInLegend: true,
+        		color: "#696661",
+        		name: "Q1",
+        		dataPoints: [
+                    { y: 17.26, x: new Date(1993,0) },
+                    { y: 17.26, x: new Date(1994,0) },
+                    { y: 17.26, x: new Date(1995,0) },
+                    { y: 17.26, x: new Date(1996,0) },
+                    { y: 17.26, x: new Date(1997,0) },
+                    { y: 17.26, x: new Date(1998,0) },
+                    { y: 17.26, x: new Date(1999,0) },
+                    { y: 17.26, x: new Date(2000,0) },
+                    { y: 17.26, x: new Date(2001,0) },
+                    { y: 17.26, x: new Date(2002,0) },
+                    { y: 17.26, x: new Date(2003,0) },
+                    { y: 17.26, x: new Date(2004,0) },
+        			{ y: 6.75, x: new Date(2012,0) },
+        			{ y: 8.57, x: new Date(2013,0) },
+        			{ y: 10.64, x: new Date(2014,0) },
+        			{ y: 13.97, x: new Date(2015,0) },
+        			{ y: 15.42, x: new Date(2016,0) },
+        			{ y: 17.26, x: new Date(2017,0) },
+                    { y: 17.26, x: new Date(2018,0) },
+        			{ y: 20.26, x: new Date(2019,0) }
+        		]
+        		},
+        		{
+        			type: "stackedColumn",
+        			showInLegend: true,
+        			name: "Q2",
+        			color: "#EDCA93",
+        			dataPoints: [
+                        { y: 17.26, x: new Date(1993,0) },
+                        { y: 17.26, x: new Date(1994,0) },
+                        { y: 17.26, x: new Date(1995,0) },
+                        { y: 17.26, x: new Date(1996,0) },
+                        { y: 17.26, x: new Date(1997,0) },
+                        { y: 17.26, x: new Date(1998,0) },
+                        { y: 17.26, x: new Date(1999,0) },
+                        { y: 17.26, x: new Date(2000,0) },
+                        { y: 17.26, x: new Date(2001,0) },
+                        { y: 17.26, x: new Date(2002,0) },
+                        { y: 17.26, x: new Date(2003,0) },
+                        { y: 17.26, x: new Date(2004,0) },
+            			{ y: 6.75, x: new Date(2012,0) },
+            			{ y: 8.57, x: new Date(2013,0) },
+            			{ y: 10.64, x: new Date(2014,0) },
+            			{ y: 13.97, x: new Date(2015,0) },
+            			{ y: 15.42, x: new Date(2016,0) },
+            			{ y: 17.26, x: new Date(2017,0) },
+                        { y: 17.26, x: new Date(2018,0) },
+            			{ y: 20.26, x: new Date(2019,0) }
+        			]
+        		},
+        		{
+        			type: "stackedColumn",
+        			showInLegend: true,
+        			name: "Q3",
+        			color: "#695A42",
+        			dataPoints: [
+                        { y: 17.26, x: new Date(1993,0) },
+                        { y: 17.26, x: new Date(1994,0) },
+                        { y: 17.26, x: new Date(1995,0) },
+                        { y: 17.26, x: new Date(1996,0) },
+                        { y: 17.26, x: new Date(1997,0) },
+                        { y: 17.26, x: new Date(1998,0) },
+                        { y: 17.26, x: new Date(1999,0) },
+                        { y: 17.26, x: new Date(2000,0) },
+                        { y: 17.26, x: new Date(2001,0) },
+                        { y: 17.26, x: new Date(2002,0) },
+                        { y: 17.26, x: new Date(2003,0) },
+                        { y: 17.26, x: new Date(2004,0) },
+            			{ y: 6.75, x: new Date(2012,0) },
+            			{ y: 8.57, x: new Date(2013,0) },
+            			{ y: 10.64, x: new Date(2014,0) },
+            			{ y: 13.97, x: new Date(2015,0) },
+            			{ y: 15.42, x: new Date(2016,0) },
+            			{ y: 17.26, x: new Date(2017,0) },
+                        { y: 17.26, x: new Date(2018,0) },
+            			{ y: 20.26, x: new Date(2019,0) }
+        			]
+        		},
+        		{
+        			type: "stackedColumn",
+        			showInLegend: true,
+        			name: "Q4",
+        			color: "#B6B1A8",
+        			dataPoints: [
+                        { y: 17.26, x: new Date(1993,0) },
+                        { y: 17.26, x: new Date(1994,0) },
+                        { y: 17.26, x: new Date(1995,0) },
+                        { y: 17.26, x: new Date(1996,0) },
+                        { y: 17.26, x: new Date(1997,0) },
+                        { y: 17.26, x: new Date(1998,0) },
+                        { y: 17.26, x: new Date(1999,0) },
+                        { y: 17.26, x: new Date(2000,0) },
+                        { y: 17.26, x: new Date(2001,0) },
+                        { y: 17.26, x: new Date(2002,0) },
+                        { y: 17.26, x: new Date(2003,0) },
+                        { y: 17.26, x: new Date(2004,0) },
+            			{ y: 6.75, x: new Date(2012,0) },
+            			{ y: 8.57, x: new Date(2013,0) },
+            			{ y: 10.64, x: new Date(2014,0) },
+            			{ y: 13.97, x: new Date(2015,0) },
+            			{ y: 15.42, x: new Date(2016,0) },
+            			{ y: 17.26, x: new Date(2017,0) },
+                        { y: 17.26, x: new Date(2018,0) },
+            			{ y: 20.26, x: new Date(2019,0) }
+        			]
+        	}]
+        });
+        chart.render();
 
-}
-</script>
+        function toolTipContent(e) {
+        	var str = "";
+        	var total = 0;
+        	var str2, str3;
+        	for (var i = 0; i < e.entries.length; i++){
+        		var  str1 = "<span style= \"color:"+e.entries[i].dataSeries.color + "\"> "+e.entries[i].dataSeries.name+"</span>: $<strong>"+e.entries[i].dataPoint.y+"</strong>bn<br/>";
+        		total = e.entries[i].dataPoint.y + total;
+        		str = str.concat(str1);
+        	}
+        	str2 = "<span style = \"color:DodgerBlue;\"><strong>"+(e.entries[0].dataPoint.x).getFullYear()+"</strong></span><br/>";
+        	total = Math.round(total * 100) / 100;
+        	str3 = "<span style = \"color:Tomato\">Total:</span><strong> $"+total+"</strong>bn<br/>";
+        	return (str2.concat(str)).concat(str3);
+        }
+
+        }
+        </script>
+
 
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
