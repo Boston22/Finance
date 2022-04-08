@@ -1,4 +1,4 @@
-
+{% extends "layout.html" %}
 
 {% set active_page = "home" %}
 
@@ -7,13 +7,14 @@
 {% block content %}
     <!--page content-->
     <p> This code is about financial numbers for yearly numbers of expenditure and revenue. It has also divided the information up so it is per state. This information includes Revenue, Capital outlay, Expenditure, General expenditure, General revenue, Insurance trust  revenue, Intergovernmental, License tax, Selective sales tax, Tax, and Debt at end of fiscal year. These are the first things shown per state. After these, there are other overall costs and resources. This information is used to determine how much money the government will lend that state the next year.</p>
-    <form action="/results">
+    <form action="/p1">
         <select name="state">
             {{ state_options}}
         </select>
         <select name="year">
             {{ year_options}}
         </select>
+        <input type="submit" value="Submit">
     </form>
 
     <!-- for financial aid -->

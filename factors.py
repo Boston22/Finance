@@ -6,7 +6,7 @@ app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  
 
 @app.route("/")
 def render_main():
-    type = request.args["year"]
+    # type = request.args["year"]
     s = get_state_options()
     y = get_year_options()
     d = var_data(type)
@@ -135,10 +135,10 @@ def var_data(type):
                     totals[c["year"]] = c["totals"]["Debt at end of fiscal year"]
 
 
-    data = ""
-    for a in totals:
-        data += Markup("")
-    return data
+    # data = ""
+    # for a in totals:
+    #     data += Markup("")
+    # return data
 
 
 
