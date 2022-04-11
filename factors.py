@@ -6,16 +6,16 @@ app = Flask(__name__) #__name__ = "__main__" if this is the file that was run.  
 
 @app.route("/")
 def render_main():
-    # type = request.args["year"]
     s = get_state_options()
     y = get_year_options()
-    d = var_data(type)
     return render_template('home.html', state_options = s, year_options = y)
 
 @app.route("/p1")
 def render_page1():
-
-    return render_template('page1.html')
+    name = request.args["totals"]
+    state = request.args["state"]
+    data = var_data(name, state)
+    return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName3 = data)
 
 @app.route("/p2")
 def render_page2():
@@ -42,7 +42,7 @@ def get_year_options():
         options= Markup("<option value=Capital outlay>Capital outlay </option>" + "<option value=Revenue>Revenue </option>" + "<option value=Expenditure>Expenditure </option>" + "<option value=General expenditure>General expenditure </option>" + "<option value=General revenue>General revenue </option>" + "<option value=Insurance trust revenue>Insurance trust revenue </option>" + "<option value=Intergovernmental>Intergovernmental </option>" + "<option value=License tax>License tax </option>" + "<option value=Selective sales tax>Selective sales tax </option>" + "<option value=Tax>Tax </option>" + "<option value=Debt at end of fiscal year>Debt at end of fiscal year </option>") #Use Markup so <, >, " are not escaped lt, gt, etc.
         return options
 
-def var_data(type):
+def var_data(name, state):
     with open('finance.json') as demographics_data:
         counties = json.load(demographics_data)
     #    cpOut = 0
@@ -56,89 +56,82 @@ def var_data(type):
     #    slcSlT = 0
     #    t = 0
     #    dbtFisY = 0
+        totals = {}
         for c in counties:
-            if type == "Capital outlay":
-                totals = {}
-                if c["totals"] in totals.keys():
-                    totals[c["totals"]] += c["totals"]["Capital outlay"]
-                else:
-                    totals[c["totals"]] = c["totals"]["Capital outlay"]
-
-            if type == "Revenue":
-                totals = {}
-                if c["totals"] in totals.keys():
-                    totals[c["totals"]] += c["totals"]["Revenue"]
-                else:
-                    totals[c["totals"]] = c["totals"]["Revenue"]
-
-            if type == "Expenditure":
-                totals = {}
-                if c["totals"] in totals.keys():
-                    totals[c["totals"]] += c["totals"]["Expenditure"]
-                else:
-                    totals[c["totals"]] = c["totals"]["Expenditure"]
-
-            if type == "General expenditure":
-                    totals = {}
-                    if c["totals"] in totals.keys():
-                        totals[c["totals"]] += c["totals"]["General expenditure"]
+            if state == c["State"]:
+                if type == "Capital outlay":
+                    if c["Year"] in totals.keys():
+                        totals[c["Year"]] += c["Totals"]["Capital outlay"]
                     else:
-                        totals[c["totals"]] = c["totals"]["General expenditure"]
-
-            if type == "General revenue":
-                totals = {}
-                if c["totals"] in totals.keys():
-                    totals[c["totals"]] += c["totals"]["General revenue"]
-                else:
-                    totals[c["totals"]] = c["totals"]["General revenue"]
-
-            if type == "Insurance trust revenue":
-                totals = {}
-                if c["totals"] in totals.keys():
-                    totals[c["totals"]] += c["totals"]["Insurance trust revenue"]
-                else:
-                    totals[c["totals"]] = c["totals"]["Insurance trust revenue"]
-
-            if type == "Intergovernmental":
-                totals = {}
-                if c["totals"] in totals.keys():
-                    totals[c["totals"]] += c["totals"]["Intergovernmental"]
-                else:
-                    totals[c["totals"]] = c["totals"]["Intergovernmental"]
-
-            if type == "License tax":
-                totals = {}
-                if c["totals"] in totals.keys():
-                    totals[c["totals"]] += c["totals"]["License tax"]
-                else:
-                    totals[c["totals"]] = c["totals"]["License tax"]
-
-            if type == "Selective sales tax":
-                totals = {}
-                if c["totals"] in totals.keys():
-                    totals[c["totals"]] += c["totals"]["Selective sales tax"]
-                else:
-                    totals[c["totals"]] = c["totals"]["Selective sales tax"]
-
-            if type == "Tax":
-                totals = {}
-                if c["totals"] in totals.keys():
-                    totals[c["totals"]] += c["totals"]["Tax"]
-                else:
-                    totals[c["totals"]] = c["totals"]["Tax"]
-
-            if type == "Debt at end of fiscal year":
-                totals = {}
-                if c["totals"] in totals.keys():
-                    totals[c["totals"]] += c["totals"]["Debt at end of fiscal year"]
-                else:
-                    totals[c["totals"]] = c["totals"]["Debt at end of fiscal year"]
+                        totals[c["Year"]] = c["Totals"]["Capital outlay"]
 
 
-    # data = ""
-    # for a in totals:
-    #     data += Markup("")
-    # return data
+                if type == "Revenue":
+                    if c["Year"] in totals.keys():
+                        totals[c["Year"]] += c["Totals"]["Revenue"]
+                    else:
+                        totals[c["Year"]] = c["Totals"]["Revenue"]
+
+                if type == "Expenditure":
+                    if c["Year"] in totals.keys():
+                        totals[c["Year"]] += c["Totals"]["Expenditure"]
+                    else:
+                        totals[c["Year"]] = c["Totals"]["Expenditure"]
+
+                if type == "General expenditure":
+                        if c["Year"] in totals.keys():
+                            totals[c["Year"]] += c["Totals"]["General expenditure"]
+                        else:
+                            totals[c["Year"]] = c["Totals"]["General expenditure"]
+
+                if type == "General revenue":
+                    if c["Year"] in totals.keys():
+                        totals[c["Year"]] += c["Totals"]["General revenue"]
+                    else:
+                        totals[c["Year"]] = c["Totals"]["General revenue"]
+
+                if type == "Insurance trust revenue":
+                    if c["Year"] in totals.keys():
+                        totals[c["Year"]] += c["Totals"]["Insurance trust revenue"]
+                    else:
+                        totals[c["Year"]] = c["Totals"]["Insurance trust revenue"]
+
+                if type == "Intergovernmental":
+                    if c["Year"] in totals.keys():
+                        totals[c["Year"]] += c["Totals"]["Intergovernmental"]
+                    else:
+                        totals[c["Year"]] = c["Totals"]["Intergovernmental"]
+
+                if type == "License tax":
+                    if c["Year"] in totals.keys():
+                        totals[c["Year"]] += c["Totals"]["License tax"]
+                    else:
+                        totals[c["Year"]] = c["Totals"]["License tax"]
+
+                if type == "Selective sales tax":
+                    if c["Year"] in totals.keys():
+                        totals[c["Year"]] += c["Totals"]["Selective sales tax"]
+                    else:
+                        totals[c["Year"]] = c["Totals"]["Selective sales tax"]
+
+                if type == "Tax":
+                    if c["Year"] in totals.keys():
+                        totals[c["Year"]] += c["Totals"]["Tax"]
+                    else:
+                        totals[c["Year"]] = c["Totals"]["Tax"]
+
+                if type == "Debt at end of fiscal year":
+                    if c["Year"] in totals.keys():
+                        totals[c["Year"]] += c["Totals"]["Debt at end of fiscal year"]
+                    else:
+                        totals[c["Year"]] = c["Totals"]["Debt at end of fiscal year"]
+    print (totals)
+    data = ""
+    for a in totals:
+        data += Markup("{ x: new Date(" + a + ", x:/" + a.value() + "},")
+    return data
+
+            #        { x: new Date(2010,0), y: 28 },
 
 
 
