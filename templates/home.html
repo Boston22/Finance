@@ -11,7 +11,7 @@
         <select name="state">
             {{ state_options}}
         </select>
-        <select name="year">
+        <select name="totals">
             {{ year_options}}
         </select>
         <input type="submit" value="Submit">
@@ -24,7 +24,7 @@
         var chart = new CanvasJS.Chart("chartContainer", {
         	animationEnabled: true,
         	title:{
-        		text: "Google - Consolidated Quarterly Revenue",
+        		text: "Intergovernmental",
         		fontFamily: "arial black",
         		fontColor: "#695A42"
         	},
@@ -38,7 +38,7 @@
         		tickColor: "#B6B1A8"
         	},
         	toolTip: {
-        		shared: true,
+        		shared: false,
         		content: toolTipContent
         	},
         	data: [{
@@ -136,7 +136,8 @@
         }
         </script>
 
-
+{%if chart_data_intergovComUnall%}
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+{%endif%}
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 {% endblock %}
