@@ -15,11 +15,14 @@ def render_page1():
     name = request.args["totals"]
     state = request.args["state"]
     data = var_data(name, state)
+    bars = ""
     if name == "Tax":
         for d in data:
             if d["State"] == state:
-                "{ x: new Date("+d["Year"]+",0), y:"+ d["Totals"]["Selective sales tax"]}
-    return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName3 = data)
+                bars += "{ x: new Date("+d["Year"]+",0), y:"+ d["Totals"]["Selective sales tax"]+"},"
+        bars=bars[:-1]
+
+    return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName3 = bars)
 
             #        { x: new Date(2010,0), y: 28 },
 
@@ -62,62 +65,68 @@ def var_data(name, state):
     #    slcSlT = 0
     #    t = 0
     #    dbtFisY = 0
-        totals = {}
-        for c in counties:
-            if c["Year"] in totals.keys():
-                if state == c["State"]:
-                    if type == "Capital outlay":
-                            totals[c["Year"]] += c["Totals"]["Capital outlay"]
-                        else:
-                            totals[c["Year"]] = c["Totals"]["Capital outlay"]
+        totals = {} for c in counties: if c["Year"] in totals.keys(): if state
+        == c["State"]: if type == "Capital outlay": if c["Year"] in
+        totals.keys(): totals[c["Year"]] += c["Totals"]["Capital outlay"] else:
+        totals[c["Year"]] = c["Totals"]["Capital outlay"]
 
 
                     if type == "Revenue":
+                        if c["Year"] in totals.keys():
                             totals[c["Year"]] += c["Totals"]["Revenue"]
                         else:
                             totals[c["Year"]] = c["Totals"]["Revenue"]
 
                     if type == "Expenditure":
+                        if c["Year"] in totals.keys():
                             totals[c["Year"]] += c["Totals"]["Expenditure"]
                         else:
                             totals[c["Year"]] = c["Totals"]["Expenditure"]
 
                     if type == "General expenditure":
-                                totals[c["Year"]] += c["Totals"]["General expenditure"]
-                            else:
-                                totals[c["Year"]] = c["Totals"]["General expenditure"]
+                        if c["Year"] in totals.keys():
+                            totals[c["Year"]] += c["Totals"]["General expenditure"]
+                        else:
+                            totals[c["Year"]] = c["Totals"]["General expenditure"]
 
                     if type == "General revenue":
+                        if c["Year"] in totals.keys():
                             totals[c["Year"]] += c["Totals"]["General revenue"]
                         else:
                             totals[c["Year"]] = c["Totals"]["General revenue"]
 
                     if type == "Insurance trust revenue":
+                        if c["Year"] in totals.keys():
                             totals[c["Year"]] += c["Totals"]["Insurance trust revenue"]
                         else:
                             totals[c["Year"]] = c["Totals"]["Insurance trust revenue"]
 
                     if type == "Intergovernmental":
+                        if c["Year"] in totals.keys():
                             totals[c["Year"]] += c["Totals"]["Intergovernmental"]
                         else:
                             totals[c["Year"]] = c["Totals"]["Intergovernmental"]
 
                     if type == "License tax":
+                        if c["Year"] in totals.keys():
                             totals[c["Year"]] += c["Totals"]["License tax"]
                         else:
                             totals[c["Year"]] = c["Totals"]["License tax"]
 
                     if type == "Selective sales tax":
+                        if c["Year"] in totals.keys():
                             totals[c["Year"]] += c["Totals"]["Selective sales tax"]
                         else:
                             totals[c["Year"]] = c["Totals"]["Selective sales tax"]
 
                     if type == "Tax":
+                        if c["Year"] in totals.keys():
                             totals[c["Year"]] += c["Totals"]["Tax"]
                         else:
                             totals[c["Year"]] = c["Totals"]["Tax"]
 
                     if type == "Debt at end of fiscal year":
+                        if c["Year"] in totals.keys():
                             totals[c["Year"]] += c["Totals"]["Debt at end of fiscal year"]
                         else:
                             totals[c["Year"]] = c["Totals"]["Debt at end of fiscal year"]
