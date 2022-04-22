@@ -76,7 +76,43 @@
         			dataPoints: [
                         {{ chart_data_insName2}}
         			]
-        	}]
+            	},
+                {
+                    type: "stackedColumn",
+                    showInLegend: true,
+                    color: "#0000EE",
+                    name: "Q5",
+                    dataPoints: [
+                        {{ chart_data_insName7}}
+                    ]
+                },
+                {
+                    type: "stackedColumn",
+                    showInLegend: true,
+                    color: "#DC143C",
+                    name: "Q6",
+                    dataPoints: [
+                        {{ chart_data_insName8}}
+                    ]
+                },
+                {
+                    type: "stackedColumn",
+                    showInLegend: true,
+                    color: "#FF1493",
+                    name: "Q7",
+                    dataPoints: [
+                        {{ chart_data_insName9}}
+                    ]
+                },
+                {
+                    type: "stackedColumn",
+                    showInLegend: true,
+                    color: "#FFC125",
+                    name: "Q8",
+                    dataPoints: [
+                        {{ chart_data_insName10}}
+                    ]
+                }]
         });
         chart.render();
 

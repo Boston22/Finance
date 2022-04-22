@@ -40,7 +40,7 @@ def render_page1():
 
 
 
-    return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName3 = bars1, chart_data_insName4 = bars2, chart_data_insName5 = bars3, chart_data_insName6 = bars4, chart_data_insName7 = bars5, chart_data_insName8 = bars6, chart_data_insName9 = bars7, chart_data_insName10 = bars8)
+    return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName3 = bars1, chart_data_insName4 = bars2, chart_data_insName5 = bars3, chart_data_insName6 = bars4)
 
             #        { x: new Date(2010,0), y: 28 },
 
