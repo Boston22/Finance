@@ -15,8 +15,10 @@ def render_page1():
     name = request.args["totals"]
     state = request.args["state"]
     data = var_data(name, state)
+
     bars1 = ""
     if name == "Tax":
+        t = 0
         for d in data:
             if d["State"] == state:
                 bars1 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Totals"]["Selective sales tax"])+"},"
@@ -31,10 +33,11 @@ def render_page1():
             if d["State"] == state:
                 bars3 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Other taxes"])+"},"
         bars3=bars3[:-1]
-
+    return(bars1, bars2, bars3)
 
     bars4= ""
     if name == "Revenue":
+        t = 0
         for d in data:
             if d["State"] == state:
                 bars4 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Totals"]["Revenue"])+"},"
@@ -43,95 +46,164 @@ def render_page1():
         for d in data:
             if d["State"] == state:
                 bars5 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Totals"]["General revenue"])+"},"
+                t = t+d["Totals"]["General revenue"]
         bars5=bars5[:-1]
         bars6 = ""
         for d in data:
             if d["State"] == state:
                 bars6 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Miscellaneous general revenue"])+"},"
+                t = t+d["Details"]["Miscellaneous general revenue"]
         bars6=bars6[:-1]
+    return(bars4, bars5, bars6)
 
-    bars8= ""
+    bars7= ""
     if name == "Expenditure":
+        t = 0
         for d in data:
             if d["State"] == state:
-                bars8 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d[""][""])+"},"
+                bars7 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Totals"]["Expenditure"])+"},"
+                t = t+d["Totals"]["Expenditure"]
+        bars7=bars7[:-1]
+        bars8 = ""
+        for d in data:
+            if d["State"] == state:
+                bars8 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Totals"]["General expenditure"])+"},"
+                t = t-d["Totals"]["General expenditure"]
         bars8=bars8[:-1]
         bars9 = ""
         for d in data:
             if d["State"] == state:
-                bars9 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Miscellaneous general revenue"])+"},"
+                bars9 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Natural Resources"]["Natural Resources Construction"])+"},"
+                t = t-d["Details"]["Natural Resources"]["Natural Resources Construction"]
         bars9=bars9[:-1]
         bars10 = ""
         for d in data:
             if d["State"] == state:
-                bars10 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Miscellaneous general revenue"])+"},"
+                bars10 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Natural Resources"]["Parks"]["Parks Total Expenditure"])+"},"
+                t = t-d["Details"]["Natural Resources"]["Parks"]["Parks Total Expenditure"]
         bars10=bars10[:-1]
         bars11 = ""
         for d in data:
             if d["State"] == state:
-                bars11 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Miscellaneous general revenue"])+"},"
+                bars11 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Welfare"]["Welfare Institution Total Expenditure"])+"},"
+                t = t-d["Details"]["Welfare"]["Welfare Institution Total Expenditure"]
         bars11=bars11[:-1]
         bars12 = ""
         for d in data:
             if d["State"] == state:
-                bars12 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Miscellaneous general revenue"])+"},"
+                bars12 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Transportation"]["Highways"]["Highways Total Expenditure"])+"},"
+                t = t-d["Details"]["Transportation"]["Highways"]["Highways Total Expenditure"]
         bars12=bars12[:-1]
         bars13 = ""
         for d in data:
             if d["State"] == state:
-                bars13 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Miscellaneous general revenue"])+"},"
+                bars13 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Utilities"]["Utilities Current Operation"])+"},"
+                t = t-d["Details"]["Utilities"]["Utilities Current Operation"]
         bars13=bars13[:-1]
-        bars14 = ""
+        bars14=""
         for d in data:
             if d["State"] == state:
-                bars14 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Miscellaneous general revenue"])+"},"
+                bars14 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Health"]["Health Total Expenditure"])+"},"
+                t = t-d["Details"]["Health"]["Health Total Expenditure"]
         bars14=bars14[:-1]
-
-
-    bars= ""
-    if name == "":
+        bars15=""
         for d in data:
             if d["State"] == state:
-                bars += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d[""][""])+"},"
-        bars=bars[:-1]
+                bars15 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Education"]["Education Total"])+"},"
+                t = t-d["Details"]["Education"]["Education Total"]
+        bars15=bars15[:-1]
+    return(bars7, bars8, bars9, bars10, bars11, bars12, bars13, bars14, bars15)
 
-    bars= ""
-    if name == "":
+    bars16= ""
+    if name == "Insurance trust revenue":
+        t = 0
         for d in data:
             if d["State"] == state:
-                bars += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d[""][""])+"},"
-        bars=bars[:-1]
-
-    bars= ""
-    if name == "":
+                bars16 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Totals"]["Insurance trust revenue"])+"},"
+                t = t+d["Totals"]["Insurance trust revenue"]
+        bars16=bars16[:-1]
+        bars17=""
         for d in data:
             if d["State"] == state:
-                bars += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d[""][""])+"},"
-        bars=bars[:-1]
+                bars17 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Insurance benefits and repayments"])+"},"
+                t = t+d["Details"]["Insurance benefits and repayments"]
+        bars17=bars17[:-1]
+    return(bars16, bars17)
 
-    bars= ""
-    if name == "":
+    bars18=""
+    if name == "Financial Aid":
+        t=0
         for d in data:
             if d["State"] == state:
-                bars += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d[""][""])+"},"
-        bars=bars[:-1]
+                bars18 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Financial Aid"]["Assistance and Subsidies"])+"},"
+                t = t+d["Details"]["Financial Aid"]["Assistance and Subsidies"]
+        bars18=bars18[:-1]
+            bars19=""
+            for d in data:
+                if d["State"] == state:
+                    bars19 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Financial Aid"]["Cash and Securities Total"])+"},"
+                    t = t+d["Details"]["Financial Aid"]["Cash and Securities Total"]
+            bars19=bars19[:-1]
+            return( bars18, bars19)
 
-    bars= ""
-    if name == "":
+    bars20= ""
+    if name == "Debt at end of fiscal year":
+        t = d["Totals"]["Debt at end of fiscal year"]
         for d in data:
             if d["State"] == state:
-                bars += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d[""][""])+"},"
-        bars=bars[:-1]
-
-    bars= ""
-    if name == "":
+                bars20 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Totals"]["Debt at end of fiscal year"])+"},"
+                t = t-d["Totals"]["Debt at end of fiscal year"]
+        bars20=bars20[:-1]
+        bars21=""
         for d in data:
             if d["State"] == state:
-                bars += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d[""][""])+"},"
-        bars=bars[:-1]
+                bars21 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Interest on debt"])+"},"
+                t = t-d["Details"]["Interest on debt"]
+        bars21=bars21[:-1]
+        bars22=""
+        for d in data:
+            if d["State"] == state:
+                bars22 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Interest on general debt"])+"},"
+                t = t-d["Details"]["Interest on general debt"]
+        bars22=bars22[:-1]
+    return(bars20, bars21, bars22)
+
+    bars23= ""
+    if name == "Intergovernmental":
+        t = 0
+        for d in data:
+            if d["State"] == state:
+                bars23 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Totals"]["Intergovernmental"])+"},"
+                t = t+d["Totals"]["Intergovernmental"]
+        bars23=bars23[:-1]
+        bars24=""
+        for d in data:
+            if d["State"] == state:
+                bars24 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Intergovernmental"]["Intergovernmental Expenditure"])+"},"
+                t = t-d["Details"]["Intergovernmental"]["Intergovernmental Expenditure"]
+        bars24=bars24[:-1]
+        bars25=""
+        for d in data:
+            if d["State"] == state:
+                bars2526 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Intergovernmental"]["Intergovernmental to Combined and Unallocable"])+"},"
+                t = t-d["Details"]["Intergovernmental"]["Intergovernmental to Combined and Unallocable"]
+        bars25=bars25[:-1]
+        bars26=""
+        for d in data:
+            if d["State"] == state:
+                bars26 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Police protection"])+"},"
+                t = t-d["Details"]["Police protection"]
+        bars26=bars26[:-1]
+        bars27=""
+        for d in data:
+            if d["State"] == state:
+                bars27 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Correction"]["Education Total"])+"},"
+                t = t-d["Details"]["Correction"]["Correction Total"]
+        bars27=bars27[:-1]
+    return(bars23, bars24, bars25, bars26, bars27)
 
 
-    return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName1 = bars1, chart_data_insName2 = bars2, chart_data_insName3 = bars3, chart_data_insName4 = bars4, chart_data_insName5 = bars5, chart_data_insName6 = bars6, chart_data_insName7 = bars7, chart_data_insName8 = bars8, chart_data_insName9 = bars9, chart_data_insName10 = bars10, chart_data_insName11 = bars11, chart_data_insName12 = bars12, chart_data_insName13 = bars13, chart_data_insName14 = bars14)
+    return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName1 = bars1, chart_data_insName2 = bars2, chart_data_insName3 = bars3, chart_data_insName4 = bars4, chart_data_insName5 = bars5, chart_data_insName6 = bars6, chart_data_insName7 = bars7, chart_data_insName8 = bars8, chart_data_insName9 = bars9, chart_data_insName10 = bars10, chart_data_insName11 = bars11, chart_data_insName12 = bars12, chart_data_insName13 = bars13, chart_data_insName14 = bars14, chart_data_insName15 = bars15, chart_data_insName16 = bars16, chart_data_insName17 = bars17, chart_data_insName18 = bars18, chart_data_insName19 = bars19, chart_data_insName20 = bars20, chart_data_insName21 = bars21, chart_data_insName22 = bars22, chart_data_insName23 = bars23, chart_data_insName24 = bars24, chart_data_insName25 = bars25, chart_data_insName26 = bars26, chart_data_insName27 = bars27)
 
             #        { x: new Date(2010,0), y: 28 },
 
