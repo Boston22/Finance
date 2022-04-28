@@ -33,7 +33,7 @@ def render_page1():
             if d["State"] == state:
                 bars3 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Other taxes"])+"},"
         bars3=bars3[:-1]
-    return(bars1, bars2, bars3)
+    return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName1 = bars1, chart_data_insName2 = bars2, chart_data_insName3 = bars3)
 
     bars4= ""
     if name == "Revenue":
@@ -54,7 +54,7 @@ def render_page1():
                 bars6 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Miscellaneous general revenue"])+"},"
                 t = t+d["Details"]["Miscellaneous general revenue"]
         bars6=bars6[:-1]
-    return(bars4, bars5, bars6)
+    return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName4 = bars4, chart_data_insName5 = bars5, chart_data_insName6 = bars6)
 
     bars7= ""
     if name == "Expenditure":
@@ -112,7 +112,7 @@ def render_page1():
                 bars15 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Education"]["Education Total"])+"},"
                 t = t-d["Details"]["Education"]["Education Total"]
         bars15=bars15[:-1]
-    return(bars7, bars8, bars9, bars10, bars11, bars12, bars13, bars14, bars15)
+    return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName7 = bars7, chart_data_insName8 = bars8, chart_data_insName9 = bars9, chart_data_insName10 = bars10, chart_data_insName11 = bars11, chart_data_insName12 = bars12, chart_data_insName13 = bars13, chart_data_insName14 = bars14, chart_data_insName15 = bars15)
 
     bars16= ""
     if name == "Insurance trust revenue":
@@ -128,7 +128,7 @@ def render_page1():
                 bars17 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Insurance benefits and repayments"])+"},"
                 t = t+d["Details"]["Insurance benefits and repayments"]
         bars17=bars17[:-1]
-    return(bars16, bars17)
+    return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName16 = bars16, chart_data_insName17 = bars17)
 
     bars18=""
     if name == "Financial Aid":
@@ -144,7 +144,7 @@ def render_page1():
                 bars19 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Financial Aid"]["Cash and Securities Total"])+"},"
                 t = t+d["Details"]["Financial Aid"]["Cash and Securities Total"]
         bars19=bars19[:-1]
-        return( bars18, bars19)
+    return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName18 = bars18, chart_data_insName19 = bars19)
 
     bars20= ""
     if name == "Debt at end of fiscal year":
@@ -166,7 +166,7 @@ def render_page1():
                 bars22 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Interest on general debt"])+"},"
                 t = t-d["Details"]["Interest on general debt"]
         bars22=bars22[:-1]
-    return(bars20, bars21, bars22)
+    return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName20 = bars20, chart_data_insName21 = bars21, chart_data_insName22 = bars22)
 
     bars23= ""
     if name == "Intergovernmental":
@@ -200,10 +200,7 @@ def render_page1():
                 bars27 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Correction"]["Education Total"])+"},"
                 t = t-d["Details"]["Correction"]["Correction Total"]
         bars27=bars27[:-1]
-    return(bars23, bars24, bars25, bars26, bars27)
-
-
-    return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName1 = bars1, chart_data_insName2 = bars2, chart_data_insName3 = bars3, chart_data_insName4 = bars4, chart_data_insName5 = bars5, chart_data_insName6 = bars6, chart_data_insName7 = bars7, chart_data_insName8 = bars8, chart_data_insName9 = bars9, chart_data_insName10 = bars10, chart_data_insName11 = bars11, chart_data_insName12 = bars12, chart_data_insName13 = bars13, chart_data_insName14 = bars14, chart_data_insName15 = bars15, chart_data_insName16 = bars16, chart_data_insName17 = bars17, chart_data_insName18 = bars18, chart_data_insName19 = bars19, chart_data_insName20 = bars20, chart_data_insName21 = bars21, chart_data_insName22 = bars22, chart_data_insName23 = bars23, chart_data_insName24 = bars24, chart_data_insName25 = bars25, chart_data_insName26 = bars26, chart_data_insName27 = bars27)
+    return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName23 = bars23, chart_data_insName24 = bars24, chart_data_insName25 = bars25, chart_data_insName26 = bars26, chart_data_insName27 = bars27)
 
             #        { x: new Date(2010,0), y: 28 },
 #change
