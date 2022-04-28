@@ -138,13 +138,13 @@ def render_page1():
                 bars18 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Financial Aid"]["Assistance and Subsidies"])+"},"
                 t = t+d["Details"]["Financial Aid"]["Assistance and Subsidies"]
         bars18=bars18[:-1]
-            bars19=""
-            for d in data:
-                if d["State"] == state:
-                    bars19 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Financial Aid"]["Cash and Securities Total"])+"},"
-                    t = t+d["Details"]["Financial Aid"]["Cash and Securities Total"]
-            bars19=bars19[:-1]
-            return( bars18, bars19)
+        bars19=""
+        for d in data:
+            if d["State"] == state:
+                bars19 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Financial Aid"]["Cash and Securities Total"])+"},"
+                t = t+d["Details"]["Financial Aid"]["Cash and Securities Total"]
+        bars19=bars19[:-1]
+        return( bars18, bars19)
 
     bars20= ""
     if name == "Debt at end of fiscal year":
