@@ -206,7 +206,7 @@ def render_page1():
     return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName1 = bars1, chart_data_insName2 = bars2, chart_data_insName3 = bars3, chart_data_insName4 = bars4, chart_data_insName5 = bars5, chart_data_insName6 = bars6, chart_data_insName7 = bars7, chart_data_insName8 = bars8, chart_data_insName9 = bars9, chart_data_insName10 = bars10, chart_data_insName11 = bars11, chart_data_insName12 = bars12, chart_data_insName13 = bars13, chart_data_insName14 = bars14, chart_data_insName15 = bars15, chart_data_insName16 = bars16, chart_data_insName17 = bars17, chart_data_insName18 = bars18, chart_data_insName19 = bars19, chart_data_insName20 = bars20, chart_data_insName21 = bars21, chart_data_insName22 = bars22, chart_data_insName23 = bars23, chart_data_insName24 = bars24, chart_data_insName25 = bars25, chart_data_insName26 = bars26, chart_data_insName27 = bars27)
 
             #        { x: new Date(2010,0), y: 28 },
-
+#change
 @app.route("/p2")
 def render_page2():
     return render_template('page2.html')
