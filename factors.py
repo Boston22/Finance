@@ -46,13 +46,13 @@ def render_page1():
         for d in data:
             if d["State"] == state:
                 bars5 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Totals"]["General revenue"])+"},"
-                t = t+d["Totals"]["General revenue"]
+                t = t-d["Totals"]["General revenue"]
         bars5=bars5[:-1]
         bars6 = ""
         for d in data:
             if d["State"] == state:
                 bars6 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Miscellaneous general revenue"])+"},"
-                t = t+d["Details"]["Miscellaneous general revenue"]
+                t = t-d["Details"]["Miscellaneous general revenue"]
         bars6=bars6[:-1]
         return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName4 = bars4, chart_data_insName5 = bars5, chart_data_insName6 = bars6)
 
@@ -126,7 +126,7 @@ def render_page1():
         for d in data:
             if d["State"] == state:
                 bars17 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Insurance benefits and repayments"])+"},"
-                t = t+d["Details"]["Insurance benefits and repayments"]
+                t = t-d["Details"]["Insurance benefits and repayments"]
         bars17=bars17[:-1]
         return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName16 = bars16, chart_data_insName17 = bars17)
 
@@ -136,35 +136,35 @@ def render_page1():
         for d in data:
             if d["State"] == state:
                 bars18 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Financial Aid"]["Assistance and Subsidies"])+"},"
-                t = t+d["Details"]["Financial Aid"]["Assistance and Subsidies"]
+                t = t-d["Details"]["Financial Aid"]["Assistance and Subsidies"]
         bars18=bars18[:-1]
         bars19=""
         for d in data:
             if d["State"] == state:
                 bars19 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Financial Aid"]["Cash and Securities Total"])+"},"
-                t = t+d["Details"]["Financial Aid"]["Cash and Securities Total"]
+                t = t-d["Details"]["Financial Aid"]["Cash and Securities Total"]
         bars19=bars19[:-1]
         return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName18 = bars18, chart_data_insName19 = bars19)
 
     bars20= ""
-    if name == "Debt at end of fiscal year":
-        t = d["Totals"]["Debt at end of fiscal year"]
+    if name == "Debt":
         for d in data:
             if d["State"] == state:
+                sum = d["Details"]["Interest on debt"]+d["Details"]["Interest on general debt"]
+                other_debt=d["Totals"]["Debt at end of fiscal year"]-sum
                 bars20 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Totals"]["Debt at end of fiscal year"])+"},"
-                t = t-d["Totals"]["Debt at end of fiscal year"]
         bars20=bars20[:-1]
         bars21=""
         for d in data:
             if d["State"] == state:
                 bars21 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Interest on debt"])+"},"
-                t = t-d["Details"]["Interest on debt"]
+
         bars21=bars21[:-1]
         bars22=""
         for d in data:
             if d["State"] == state:
                 bars22 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Interest on general debt"])+"},"
-                t = t-d["Details"]["Interest on general debt"]
+
         bars22=bars22[:-1]
         return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName20 = bars20, chart_data_insName21 = bars21, chart_data_insName22 = bars22)
 
