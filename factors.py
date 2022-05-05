@@ -185,7 +185,7 @@ def render_page1():
         bars25=""
         for d in data:
             if d["State"] == state:
-                bars2526 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Intergovernmental"]["Intergovernmental to Combined and Unallocable"])+"},"
+                bars25 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Intergovernmental"]["Intergovernmental to Combined and Unallocable"])+"},"
                 t = t-d["Details"]["Intergovernmental"]["Intergovernmental to Combined and Unallocable"]
         bars25=bars25[:-1]
         bars26=""
@@ -197,7 +197,7 @@ def render_page1():
         bars27=""
         for d in data:
             if d["State"] == state:
-                bars27 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Correction"]["Education Total"])+"},"
+                bars27 += "{ x: new Date("+str(d["Year"])+",0), y:"+ str(d["Details"]["Correction"]["Correction Total"])+"},"
                 t = t-d["Details"]["Correction"]["Correction Total"]
         bars27=bars27[:-1]
         return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName23 = bars23, chart_data_insName24 = bars24, chart_data_insName25 = bars25, chart_data_insName26 = bars26, chart_data_insName27 = bars27)
