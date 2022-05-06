@@ -115,7 +115,7 @@ def render_page1():
         return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName7 = bars7, chart_data_insName8 = bars8, chart_data_insName9 = bars9, chart_data_insName10 = bars10, chart_data_insName11 = bars11, chart_data_insName12 = bars12, chart_data_insName13 = bars13, chart_data_insName14 = bars14, chart_data_insName15 = bars15)
 
     bars16= ""
-    if name == "Insurance trust revenue":
+    if name == "Insurance":
         t = 0
         for d in data:
             if d["State"] == state:
@@ -131,7 +131,7 @@ def render_page1():
         return render_template('page1.html', chart_data_intergovExp = name, chart_data_insName16 = bars16, chart_data_insName17 = bars17)
 
     bars18=""
-    if name == "Financial Aid":
+    if name == "Financial":
         t=0
         for d in data:
             if d["State"] == state:
